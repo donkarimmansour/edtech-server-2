@@ -18,13 +18,6 @@ public class APIService {
     }
 
     public Mono<List<Map<String, Object>>> generateQuizQuestions(String cours) {
-        System.out.println();
-        System.out.println("in api service");
-        System.out.println();
-        System.out.println(cours.split("\n")[0]);
-        System.out.println();
-
-        System.out.println();
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/generate").queryParam("cours", cours).build())
                 .accept(MediaType.APPLICATION_JSON)

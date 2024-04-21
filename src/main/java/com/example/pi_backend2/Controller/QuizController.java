@@ -29,17 +29,24 @@ public class QuizController {
         this.questionRepository=questionRepository;
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<List<Quiz>> getAllQuizzes() {
-        List<Quiz> quizzes = quizService.getAllQuizzes();
+
+    @GetMapping("/all/{matiere_id}")
+    public ResponseEntity<List<Quiz>> getAllQuizzesByMatiereID(@PathVariable("matiere_id") Long id) {
+        List<Quiz> quizzes = quizService.getAllQuizzesByMatiereName(id);
         return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{cour}")
-    public ResponseEntity<List<Quiz>> getAllQuizzesByCour(@PathVariable("quizName") String name) {
-        List<Quiz> quizzes = quizService.getAllQuizzesByCours(name);
-        return new ResponseEntity<>(quizzes, HttpStatus.OK);
-    }
+//    @GetMapping("/get")
+//    public ResponseEntity<List<Quiz>> getAllQuizzes() {
+//        List<Quiz> quizzes = quizService.getAllQuizzes();
+//        return new ResponseEntity<>(quizzes, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/get/{cour}")
+//    public ResponseEntity<List<Quiz>> getAllQuizzesByCour(@PathVariable("quizName") String name) {
+//        List<Quiz> quizzes = quizService.getAllQuizzesByCours(name);
+//        return new ResponseEntity<>(quizzes, HttpStatus.OK);
+//    }
 
     @GetMapping("/{quizName}")
     public ResponseEntity<Quiz> getQuizById(@PathVariable("quizName") String name) {
@@ -75,9 +82,9 @@ public class QuizController {
 
     @GetMapping("/createQuiz")
     @Transactional
-    public ResponseEntity<Quiz> generateQuiz2(@RequestParam String cours, String cour_id) {
+    public ResponseEntity<Quiz> generateQuiz2(@RequestParam String cours, Long matiere_id) {
         // Generate and save the quiz
-        this.quizService.generateAndSaveQuiz(cours, cour_id);
+        this.quizService.generateAndSaveQuiz(cours, matiere_id);
 
         // Retrieve the saved quiz
         Quiz savedQuiz = quizService.getOptionalQuizByName(cours);
