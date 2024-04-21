@@ -30,9 +30,9 @@ public class QuizController {
     }
 
 
-    @GetMapping("/all/{matiere_id}")
-    public ResponseEntity<List<Quiz>> getAllQuizzesByMatiereID(@PathVariable("matiere_id") Long id) {
-        List<Quiz> quizzes = quizService.getAllQuizzesByMatiereName(id);
+    @GetMapping("/all/{nomCours}")
+    public ResponseEntity<List<Quiz>> getAllQuizzesByCours(@PathVariable("nomCours") String nomCours) {
+        List<Quiz> quizzes = quizService.getAllQuizzesByCours(nomCours);
         return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
 
@@ -82,9 +82,9 @@ public class QuizController {
 
     @GetMapping("/createQuiz")
     @Transactional
-    public ResponseEntity<Quiz> generateQuiz2(@RequestParam String cours, Long matiere_id) {
+    public ResponseEntity<Quiz> generateQuiz2(@RequestParam String cours, String nom_cours) {
         // Generate and save the quiz
-        this.quizService.generateAndSaveQuiz(cours, matiere_id);
+        this.quizService.generateAndSaveQuiz(cours, nom_cours);
 
         // Retrieve the saved quiz
         Quiz savedQuiz = quizService.getOptionalQuizByName(cours);

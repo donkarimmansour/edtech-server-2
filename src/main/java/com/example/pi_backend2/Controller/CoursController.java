@@ -40,6 +40,7 @@ public class CoursController {
     @GetMapping("/{title}")
     public ResponseEntity<byte[]> getDocumentPDF(@PathVariable String title) {
         byte[] data = documentPDFService.getDocumentPDFById(title);
+
         if (data != null) {
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF).body(data);
         } else {

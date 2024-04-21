@@ -48,13 +48,9 @@ public class QuizService {
 
 
 
-    public List<Quiz> getAllQuizzesByMatiereName(Long id) {
-
-        Optional<matiere> matiere= matiereRepository.findById(id);
-
-        return  quizRepository.findByMatiere(matiere);
-
-
+    public List<Quiz> getAllQuizzesByCours(String nomCours) {
+        Optional<Cours> cours = coursRepository.findByTitle(nomCours);
+        return  quizRepository.findByCours(cours);
     }
 
 
@@ -125,7 +121,7 @@ public class QuizService {
 
 
     @Transactional
-    public Quiz generateAndSaveQuiz(String cours, Long matiere_id) {
+    public Quiz generateAndSaveQuiz(String cours, String nom_cours) {
         System.out.println("Generating quiz for course: " + cours.split("\n")[0]);
 
         // Generate quiz questions synchronously
@@ -144,7 +140,7 @@ public class QuizService {
         Quiz quiz = new Quiz();
         quiz.setName(cours.split("\n")[0]);
         quiz.setDescription("Quiz for " + cours.split("\n")[0]);
-        quiz.setMatiere(matiereRepository.findById(matiere_id).orElse(null));
+        quiz.setCours(coursRepository.findByTitle(nom_cours).orElse(null));
 
         // Initialize an empty list to hold questions
         List<Question> savedQuestions = new ArrayList<>();

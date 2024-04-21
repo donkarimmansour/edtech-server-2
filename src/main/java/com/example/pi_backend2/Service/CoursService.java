@@ -28,7 +28,6 @@ public class CoursService {
 
     public byte[] getDocumentPDFById(String title) {
         Optional<Cours>  optionalDocumentPDF = coursRepository.findByTitle(title);
-
         return optionalDocumentPDF.map(Cours::getData).orElse(null);
     }
 //    public List<Cours> getAllCours() {

@@ -20,7 +20,7 @@ public class Quiz {
     private String name;
 
     @ManyToOne
-    private matiere matiere;
+    private Cours cours;
 
     private String description;
 
@@ -28,20 +28,20 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz", fetch = FetchType.EAGER)
     private List<Question> questions;
 
-    public Quiz(Long id, String name, matiere matiere,String description) {
+    public Quiz(Long id, String name, Cours cours,String description) {
         this.id = id;
         this.name = name;
-        this.matiere=matiere;
+        this.cours=cours;
         this.description = description;
 
     }
 
-    public matiere getMatiere() {
-        return matiere;
+    public Cours getCours() {
+        return cours;
     }
 
-    public void setMatiere(matiere matiere) {
-        this.matiere = matiere;
+    public void setCours(Cours cours) {
+        this.cours = cours;
     }
 
     public Long getId() {
