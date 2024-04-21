@@ -35,6 +35,12 @@ public class QuizController {
         return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
 
+    @GetMapping("/get/{cour}")
+    public ResponseEntity<List<Quiz>> getAllQuizzesByCour(@PathVariable("quizName") String name) {
+        List<Quiz> quizzes = quizService.getAllQuizzesByCours(name);
+        return new ResponseEntity<>(quizzes, HttpStatus.OK);
+    }
+
     @GetMapping("/{quizName}")
     public ResponseEntity<Quiz> getQuizById(@PathVariable("quizName") String name) {
         Quiz quiz = quizService.getQuizByName(name);
@@ -70,15 +76,8 @@ public class QuizController {
     @GetMapping("/createQuiz")
     @Transactional
     public ResponseEntity<Quiz> generateQuiz2(@RequestParam String cours, String cour_id) {
-        System.out.println();
-        System.out.println("in controler");
-        System.out.println();
-
         // Generate and save the quiz
         this.quizService.generateAndSaveQuiz(cours, cour_id);
-        System.out.println();
-
-        System.out.println();
 
         // Retrieve the saved quiz
         Quiz savedQuiz = quizService.getOptionalQuizByName(cours);

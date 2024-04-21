@@ -52,15 +52,15 @@ public class UserService {
 
     }
 
-    public void deleteUser(String userName) {
-        Optional<User> userOptional = userRepository.findByUserName(userName);
-
-        if (userOptional.isPresent()) {
-            userRepository.delete(userOptional.get());
-        } else {
-
-        }
-    }
+//    public void deleteUser(String userName) {
+//        Optional<User> userOptional = userRepository.findByUserName(userName);
+//
+//        if (userOptional.isPresent()) {
+//            userRepository.delete(userOptional.get());
+//        } else {
+//
+//        }
+//    }
     @Transactional(readOnly = true)
 
     public User authenticate(String userName, String password) {

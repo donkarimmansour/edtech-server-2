@@ -48,7 +48,7 @@ public class CoursController {
     }
     @GetMapping("/all/{nomMatiere}")
     public List<Cours> getAllCours(@PathVariable String nomMatiere) {
-        System.out.println(this.documentPDFService.getCoursByMatiere(nomMatiere));
+        //System.out.println(this.documentPDFService.getCoursByMatiere(nomMatiere));
         return this.documentPDFService.getCoursByMatiere(nomMatiere);
 
     }

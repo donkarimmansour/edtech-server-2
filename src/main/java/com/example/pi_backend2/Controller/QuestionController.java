@@ -13,43 +13,43 @@ import java.util.*;
 @RestController
 @RequestMapping("/questions")
 public class QuestionController {
-
-    private QuestionRepository questionRepository;
-
-    public QuestionController(QuestionRepository questionRepository) {
-        this.questionRepository = questionRepository;
-    }
-
-
-    @GetMapping("/get")
-    public List<Question> getAllQuestions() {
-        return questionRepository.findAll();
-    }
 //
-//    // Récupérer une question par son ID
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
-//        Optional<Question> questionOptional = questionRepository.findById(id);
-//        return questionOptional.map(question -> new ResponseEntity<>(question, HttpStatus.OK))
-//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    private QuestionRepository questionRepository;
+//
+//    public QuestionController(QuestionRepository questionRepository) {
+//        this.questionRepository = questionRepository;
 //    }
-
-    // Ajouter une nouvelle question
-    @PostMapping("/post")
-    public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
-        Question qst = new Question();
-        qst.setName(question.getName());
 //
-//        List<String> optionTexts = question.getOptions() instanceof List
-//                ? question.getOptions()
-//                : new ArrayList<>();
-//        qst.setOptions(optionTexts);
-
-
-        Question savedQuestion = questionRepository.save(qst);
-
-        return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
-    }
+//
+//    @GetMapping("/get")
+//    public List<Question> getAllQuestions() {
+//        return questionRepository.findAll();
+//    }
+////
+////    // Récupérer une question par son ID
+////    @GetMapping("/{id}")
+////    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
+////        Optional<Question> questionOptional = questionRepository.findById(id);
+////        return questionOptional.map(question -> new ResponseEntity<>(question, HttpStatus.OK))
+////                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+////    }
+//
+//    // Ajouter une nouvelle question
+//    @PostMapping("/post")
+//    public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
+//        Question qst = new Question();
+//        qst.setName(question.getName());
+////
+////        List<String> optionTexts = question.getOptions() instanceof List
+////                ? question.getOptions()
+////                : new ArrayList<>();
+////        qst.setOptions(optionTexts);
+//
+//
+//        Question savedQuestion = questionRepository.save(qst);
+//
+//        return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
+//    }
 
     // Mettre à jour une question existante
 //    @PutMapping("/{id}")

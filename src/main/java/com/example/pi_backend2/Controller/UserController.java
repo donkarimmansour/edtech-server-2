@@ -33,14 +33,14 @@ public class UserController {
 
     }
 
-    // Endpoint to delete a user by username
-    @DeleteMapping("/delete/{userName}")
-    public ResponseEntity<String> deleteUser(@PathVariable String userName) {
-
-        userService.deleteUser(userName);
-        return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
-
-    }
+//    // Endpoint to delete a user by username
+//    @DeleteMapping("/delete/{userName}")
+//    public ResponseEntity<String> deleteUser(@PathVariable String userName) {
+//
+//        userService.deleteUser(userName);
+//        return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
+//
+//    }
 
 
     @PostMapping("/login")

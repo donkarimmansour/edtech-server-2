@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CoursRepository extends JpaRepository<Cours,Long> {
-    Optional<Cours> findByTitle(String title);
+    Optional<Cours>  findByTitle(String title);
 
     List<Cours> findByTitleContainingIgnoreCase(String keywords);
 
     List<Cours> findByMatiere(matiere matiere);
+
 }
