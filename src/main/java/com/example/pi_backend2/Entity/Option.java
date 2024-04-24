@@ -23,7 +23,6 @@ public class Option {
 
     private String name;
 
-    @JsonIgnore
     @Column(name = "is_answer")
     private int isAnswer;
 

@@ -85,7 +85,7 @@ async def generate_quiz_questions(course_content):
             ]
         )
 
-        print("response", response)
+        #print("response", response)
 
         
         # with open('response.txt', 'a+') as f:
