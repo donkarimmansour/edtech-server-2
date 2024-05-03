@@ -13,4 +13,5 @@ public interface TeacherRepository  extends JpaRepository<Prof,Long> {
 
     Prof findByUserNameAndPassword(String userName, String password);
 
+    Optional<Prof> findByUserName(String userName);
 }

@@ -1,6 +1,7 @@
 package com.example.pi_backend2.Controller;
 
 import com.example.pi_backend2.Entity.User;
+import com.example.pi_backend2.Repository.UserRepository;
 import com.example.pi_backend2.Service.LoginRequest;
 import com.example.pi_backend2.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+    @GetMapping("/{userName}")
+    public ResponseEntity<Optional<User>> getUserByUserName(@PathVariable String userName) {
+        Optional<User> user = userRepository.findByUserName(userName);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
 
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody User user) {

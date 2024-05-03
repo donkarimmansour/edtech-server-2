@@ -36,19 +36,34 @@ public class UserService {
         Optional<User> userOptional = userRepository.findByUserName(userName);
         User existingUser = userOptional.get();
 
-        if (userOptional.isPresent()) {
+        // Update other fields as needed
+        existingUser.setFirstName(updatedUser.getFirstName());
+        existingUser.setLastName(updatedUser.getLastName());
+        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setEmail(updatedUser.getEmail());
 
-            existingUser.setUserName(updatedUser.getUserName());
-            existingUser.setPassword(updatedUser.getPassword());
-            existingUser.setEmail(updatedUser.getEmail());
+        // Save the updated user
+        return userRepository.save(existingUser);
+
+    }
+
+
+    public Prof updateProf(String userName, Prof updatedTeacher) {
+
+        Optional<Prof> teacherOptional = teacherRepository.findByUserName(userName);
+        Prof existingTeacher = teacherOptional.get();
+
+            existingTeacher.setNom(updatedTeacher.getNom());
+            existingTeacher.setPrenom(updatedTeacher.getPrenom());
+            existingTeacher.setNumeroTel(updatedTeacher.getNumeroTel());
+            existingTeacher.setSpecialite(updatedTeacher.getSpecialite());
+            existingTeacher.setAdresse(updatedTeacher.getAdresse());
+            existingTeacher.setPassword(updatedTeacher.getPassword());
+//            existingTeacher.setCodeProf(updatedTeacher.getCodeProf());
             // Update other fields as needed
 
             // Save the updated user
-            return userRepository.save(existingUser);
-        } else {
-
-        }
-        return  existingUser;
+            return teacherRepository.save(existingTeacher);
 
     }
 
